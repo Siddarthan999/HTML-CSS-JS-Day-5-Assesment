@@ -3,9 +3,49 @@
     <head>
         <title>Calculator App</title>
     </head>
-
-    <link rel="stylesheet" href="Calculator.css">
-
+    <style>
+        body {
+            background-color: black;
+        }
+        button {
+            position: relative;
+            left: 45%;
+            background-color: rgb(116, 112, 112);
+            color: white;
+            border: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .back-button {
+            background-color: rgb(66, 66, 247);
+            border: none;
+            position: absolute;
+            left: 94%;
+            bottom: 92%;
+        }
+        a {
+            color: white;
+        }
+        .cal-button {
+            background-color: orange;
+        }
+        .p-title {
+            color:rgb(238, 242, 245);
+            font-weight: bold;
+            position: relative;
+            left: 45%;
+        }
+        .p-result {
+            color: white;
+            position: relative;
+            left: 45%;
+        }
+    </style>
     <body onload="displayDefault()">
         <p>
             <p class="p-title">CALCULATOR APP</p>
@@ -37,5 +77,31 @@
         </p>
         <button onclick="clr()">Clear</button>
     </body>
-    <script src="Calculator.js"></script>
+    <script>
+        let result = Number(localStorage.getItem('result'));
+        let calculation = '';
+
+        function addeve(str) {
+            calculation+=str;
+            document.querySelector('.display-values').innerHTML = calculation;
+        }
+
+        function cal() {
+            result=eval(calculation)
+            document.querySelector('.display-values').innerHTML = result;
+            localStorage.setItem('result', String(result));
+        }
+
+        function displayDefault() {
+            document.querySelector('.display-values').innerHTML = result;
+        }
+
+        function clr() {
+            calculation = '';
+            result=0;
+            document.querySelector('.display-values').innerHTML = calculation + '<br>';
+            
+            localStorage.setItem('result', String(result));
+        }
+    </script>
 </html>

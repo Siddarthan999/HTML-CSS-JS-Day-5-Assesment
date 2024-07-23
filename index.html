@@ -1,107 +1,74 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Calculator App</title>
-    </head>
-    <style>
-        body {
-            background-color: black;
-        }
-        button {
-            position: relative;
-            left: 45%;
-            background-color: rgb(116, 112, 112);
-            color: white;
-            border: none;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            padding-left: 15px;
-            padding-right: 15px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-        }
-        .back-button {
-            background-color: rgb(66, 66, 247);
-            border: none;
-            position: absolute;
-            left: 94%;
-            bottom: 92%;
-        }
-        a {
-            color: white;
-        }
-        .cal-button {
-            background-color: orange;
-        }
-        .p-title {
-            color:rgb(238, 242, 245);
-            font-weight: bold;
-            position: relative;
-            left: 45%;
-        }
-        .p-result {
-            color: white;
-            position: relative;
-            left: 45%;
-        }
-    </style>
-    <body onload="displayDefault()">
-        <p>
-            <p class="p-title">CALCULATOR APP</p>
-            <p class="p-result"><span class="display-values"><br></span></p>
-        </p>
-        <p>
-            <button onclick="addeve('1')">1</button>
-            <button onclick="addeve('2')">2</button>
-            <button onclick="addeve('3')">3</button>
-            <button class="cal-button" onclick="addeve('+')">+</button>
-        </p>
-        <p>
-            <button onclick="addeve('4')">4</button>
-            <button onclick="addeve('5')">5</button>
-            <button onclick="addeve('6')">6</button>
-            <button class="cal-button" onclick="addeve('-')">-</button>
-        </p>
-        <p>
-            <button onclick="addeve('7')">7</button>
-            <button onclick="addeve('8')">8</button>
-            <button onclick="addeve('9')">9</button>
-            <button class="cal-button" onclick="addeve('*')">*</button>
-        </p>
-        <p>
-            <button onclick="addeve('0')">0</button>
-            <button onclick="addeve('.')">.</button>
-            <button onclick="cal()">=</button>
-            <button class="cal-button"onclick="addeve('/')">/</button>
-        </p>
-        <button onclick="clr()">Clear</button>
-    </body>
-    <script>
-        let result = Number(localStorage.getItem('result'));
-        let calculation = '';
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
 
-        function addeve(str) {
-            calculation+=str;
-            document.querySelector('.display-values').innerHTML = calculation;
-        }
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  height: 500px;
+  width: 500px;
+}
 
-        function cal() {
-            result=eval(calculation)
-            document.querySelector('.display-values').innerHTML = result;
-            localStorage.setItem('result', String(result));
-        }
+.gallery img {
+  width: 100%;
+  height: auto;
+  border: 2px solid #ccc;
+  outline: none;
+  transition: transform 0.2s;
+}
 
-        function displayDefault() {
-            document.querySelector('.display-values').innerHTML = result;
-        }
+.gallery img:focus {
+  border-color: #333;
+  transform: scale(1.30);
+}
+</style>
+<body>
+  <div class="gallery">
+    <img src="image1.jpg" alt="A beautiful sunrise" tabindex="0">
+    <img src="image2.jpg" alt="A scenic mountain view" tabindex="0">
+    <img src="image3.jpg" alt="A serene beach" tabindex="0">
+    <img src="image4.jpg" alt="A bustling cityscape" tabindex="0">
+    <img src="image5.jpg" alt="A calm forest" tabindex="0">
+    <img src="image6.jpg" alt="A vibrant flower" tabindex="0">
+  </div>
 
-        function clr() {
-            calculation = '';
-            result=0;
-            document.querySelector('.display-values').innerHTML = calculation + '<br>';
-            
-            localStorage.setItem('result', String(result));
-        }
-    </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+    console.log('Page has loaded');
+
+    const images = document.querySelectorAll('.gallery img');
+
+    images.forEach((image, index) => {
+        image.addEventListener('focus', (event) => {
+        console.log(`Image ${index + 1} is focused`);
+        event.target.style.border = '2px solid blue';
+        });
+
+        image.addEventListener('blur', (event) => {
+        console.log(`Image ${index + 1} has lost focus`);
+        event.target.style.border = '2px solid #ccc';
+        });
+
+        image.addEventListener('mousemove', (event) => {
+        console.log(`Mouse moved over Image ${index + 1}`);
+        });
+    });
+    });
+  </script>
+</body>
 </html>
